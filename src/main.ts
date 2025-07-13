@@ -2,11 +2,11 @@
 // import { Server } from "https://deno.land/x/socket_io@0.2.0/mod.ts";
 import { Application, Router } from "https://deno.land/x/oak@v11.1.0/mod.ts";
 
-const text = await Deno.readTextFile("./words.txt");
-
+const WORDFILE_PATH = Deno.env.get("WORDFILE_PATH") ?? "./words.txt";
+const text = await Deno.readTextFile(WORDFILE_PATH);
 const words = text.split("\n");
 
-function main() {
+function main(): void {
   const app = new Application();
 
   app.use(async (context, next) => {
@@ -30,7 +30,7 @@ function main() {
     ctx.response.body = JSON.stringify(rw);
   });
   app.use(router.routes());
-  app.listen({ port: Deno.env.get("PORT") });
+  app.listen({ port: Number(Deno.env.get("PORT") ?? 8080) });
 }
 
 main();

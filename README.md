@@ -5,13 +5,13 @@
 以下のコマンドでサーバーを起動します。
 
 ```bash
-PORT=8080 deno run --allow-net --allow-read --allow-env src/main.js
+deno run -A src/main.ts
 ```
 
 以下のコマンドで `./words.txt` を最新の状態へ更新します。
 
 ```bash
-deno run -A processor.ts     
+deno run -A processor.ts
 ```
 
 ## test
