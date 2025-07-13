@@ -1,0 +1,54 @@
+{
+  "lint": {
+    "rules": {
+      "tags": ["recommended"],
+      "include": [
+        "ban-untagged-todo",
+        "explicit-function-return-type",
+        "no-unused-vars",
+        "no-console",
+        "prefer-const",
+        "no-explicit-any"
+      ],
+      "exclude": [
+        "no-implicit-any"
+      ]
+    },
+    "include": [
+      "*.ts",
+      "*.tsx",
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ],
+    "exclude": [
+      "node_modules/",
+      "dist/",
+      "build/",
+      "jawiki-latest-all-titles-in-ns0",
+      "words.txt"
+    ]
+  },
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 100,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": false,
+    "proseWrap": "preserve",
+    "include": [
+      "*.ts",
+      "*.tsx",
+      "*.js",
+      "*.jsx",
+      "*.json",
+      "*.md"
+    ],
+    "exclude": [
+      "node_modules/",
+      "dist/",
+      "build/",
+      "jawiki-latest-all-titles-in-ns0",
+      "words.txt"
+    ]
+  }
+}
