@@ -37,6 +37,10 @@ export function isPrefecture(title: string): boolean {
     return prefecturePattern.test(title);
 }
 
+export function isUnderScore(title: string): boolean {
+    return title.includes("_");
+}
+
 function trimGrep(title: string): string {
     // タイトルが '_(...)' というパターン（例: "記事名_(曖昧さ回避)"）にマッチした場合に削除する
     // 例: "タイトル_(XXX)" → "タイトル"
@@ -62,6 +66,9 @@ async function filter(): Promise<void> {
             continue
         }
         if (isPrefecture(title)) {
+            continue
+        }
+        if (isUnderScore(title)) {
             continue
         }
 
