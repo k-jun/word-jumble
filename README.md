@@ -11,7 +11,7 @@ deno run -A src/main.ts
 以下のコマンドで `./words.txt` を最新の状態へ更新します。
 
 ```bash
-deno run -A processor.ts
+deno run -A batch/main.ts
 ```
 
 ## test

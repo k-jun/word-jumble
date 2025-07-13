@@ -1,6 +1,6 @@
 import { expect } from "jsr:@std/expect";
 import { describe, it } from "jsr:@std/testing/bdd";
-import { isSpecialCharacter } from "./processor.ts";
+import { isSpecialCharacter } from "./main.ts";
 
 describe("isSpecialCharacter", () => {
   describe("when title starts with punctuation", () => {
