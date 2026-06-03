@@ -78,13 +78,12 @@ async function filter(): Promise<void> {
     await Deno.writeTextFile(OUTPUT_FILE, Array.from(titles).join('\n'));
 }
 
-async function process(): Promise<void> {
+export async function process(): Promise<void> {
     try {
       await download();
       await filter();
     } catch (error: unknown) {
-        const errorMessage = new TextEncoder().encode(`Error: ${error}\n`);
-        await Deno.stdout.write(errorMessage);
+        console.error(`Error: ${error}`);
         Deno.exit(1);
     }
 }

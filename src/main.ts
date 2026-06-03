@@ -1,6 +1,19 @@
 import { Application, Router } from "https://deno.land/x/oak@v11.1.0/mod.ts";
+import { process } from "../batch/main.ts";
 
 const WORDS_PATH = Deno.env.get("WORDS_PATH") ?? "./words.txt";
+
+async function ensureWordsFile(): Promise<void> {
+  try {
+    await Deno.stat(WORDS_PATH);
+  } catch {
+    await Deno.stdout.write(new TextEncoder().encode(`WORDS_PATH not found: ${WORDS_PATH}. Running batch process...\n`));
+    await process();
+  }
+}
+
+await ensureWordsFile();
+
 const text = await Deno.readTextFile(WORDS_PATH);
 let words = text.split("\n");
 
