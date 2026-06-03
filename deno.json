@@ -1,7 +1,9 @@
 {
   "lint": {
     "rules": {
-      "tags": ["recommended"],
+      "tags": [
+        "recommended"
+      ],
       "include": [
         "ban-untagged-todo",
         "explicit-function-return-type",
@@ -9,9 +11,6 @@
         "no-console",
         "prefer-const",
         "no-explicit-any"
-      ],
-      "exclude": [
-        "no-implicit-any"
       ]
     },
     "include": [
