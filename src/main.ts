@@ -1,6 +1,27 @@
 import { Application, Router } from "https://deno.land/x/oak@v11.1.0/mod.ts";
+import { process as batchProcess } from "../batch/main.ts";
 
 const INPUT_PATH = Deno.env.get("INPUT_PATH") ?? "./words.txt";
+
+// words.txt が存在しない場合は batch を実行して生成
+try {
+  await Deno.stat(INPUT_PATH);
+} catch (error) {
+  if (error instanceof Deno.errors.NotFound) {
+    const info1 = new TextEncoder().encode(
+      `[INFO] ${INPUT_PATH} not found. Running batch process...\n`,
+    );
+    await Deno.stderr.write(info1);
+    await batchProcess();
+    const info2 = new TextEncoder().encode(
+      `[INFO] Batch process completed. ${INPUT_PATH} created.\n`,
+    );
+    await Deno.stderr.write(info2);
+  } else {
+    throw error;
+  }
+}
+
 const text = await Deno.readTextFile(INPUT_PATH);
 let words = text.split("\n");
 

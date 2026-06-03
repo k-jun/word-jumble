@@ -78,7 +78,7 @@ async function filter(): Promise<void> {
     await Deno.writeTextFile(OUTPUT_FILE, Array.from(titles).join('\n'));
 }
 
-async function process(): Promise<void> {
+export async function process(): Promise<void> {
     await download();
     await filter();
 }
