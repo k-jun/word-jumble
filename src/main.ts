@@ -1,11 +1,11 @@
 import { Application, Router } from "https://deno.land/x/oak@v11.1.0/mod.ts";
 
-const INPUT_PATH = Deno.env.get("INPUT_PATH") ?? "./words.txt";
-const text = await Deno.readTextFile(INPUT_PATH);
+const WORDS_PATH = Deno.env.get("WORDS_PATH") ?? "./words.txt";
+const text = await Deno.readTextFile(WORDS_PATH);
 let words = text.split("\n");
 
 setInterval(async () => {
-  const text = await Deno.readTextFile(INPUT_PATH);
+  const text = await Deno.readTextFile(WORDS_PATH);
   words = text.split("\n");
 }, 10 * 60 * 1000);
 

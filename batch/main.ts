@@ -4,7 +4,7 @@ import { gunzip } from "https://deno.land/x/compress@v0.4.5/mod.ts";
 
 const WIKIPEDIA_DUMP_URL = "https://dumps.wikimedia.org/jawiki/latest/";
 const TITLES_FILE = "jawiki-latest-all-titles-in-ns0.gz";
-const OUTPUT_FILE = Deno.env.get("OUTPUT_PATH") ?? "./words.txt";
+const OUTPUT_FILE = Deno.env.get("WORDS_PATH") ?? "./words.txt";
 
 async function download(): Promise<void> {
     const response = await fetch(`${WIKIPEDIA_DUMP_URL}${TITLES_FILE}`);
@@ -79,13 +79,9 @@ async function filter(): Promise<void> {
 }
 
 async function process(): Promise<void> {
-    await download();
-    await filter();
-}
-
-async function main(): Promise<void> {
     try {
-        await process();
+      await download();
+      await filter();
     } catch (error: unknown) {
         const errorMessage = new TextEncoder().encode(`Error: ${error}\n`);
         await Deno.stdout.write(errorMessage);
@@ -94,5 +90,5 @@ async function main(): Promise<void> {
 }
 
 if (import.meta.main) {
-    await main();
-} 
+    await process();
+}
