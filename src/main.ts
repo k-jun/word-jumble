@@ -14,7 +14,6 @@ async function ensureWordsFile(): Promise<void> {
     await Deno.stdout.write(new TextEncoder().encode(`[startup] Batch process completed. WORDS_PATH is ready.\n`));
   }
 }
-}
 
 await ensureWordsFile();
 
