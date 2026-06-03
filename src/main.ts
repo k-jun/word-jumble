@@ -4,12 +4,16 @@ import { process } from "../batch/main.ts";
 const WORDS_PATH = Deno.env.get("WORDS_PATH") ?? "./words.txt";
 
 async function ensureWordsFile(): Promise<void> {
+  await Deno.stdout.write(new TextEncoder().encode(`[startup] Checking WORDS_PATH: ${WORDS_PATH}\n`));
   try {
     await Deno.stat(WORDS_PATH);
+    await Deno.stdout.write(new TextEncoder().encode(`[startup] WORDS_PATH already exists. Skipping batch process.\n`));
   } catch {
-    await Deno.stdout.write(new TextEncoder().encode(`WORDS_PATH not found: ${WORDS_PATH}. Running batch process...\n`));
+    await Deno.stdout.write(new TextEncoder().encode(`[startup] WORDS_PATH not found. Running batch process...\n`));
     await process();
+    await Deno.stdout.write(new TextEncoder().encode(`[startup] Batch process completed. WORDS_PATH is ready.\n`));
   }
+}
 }
 
 await ensureWordsFile();
